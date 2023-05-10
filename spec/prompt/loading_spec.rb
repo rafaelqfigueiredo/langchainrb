@@ -14,5 +14,11 @@ RSpec.describe Prompt do
       expect(prompt.example_prompt).to be_a(Prompt::PromptTemplate)
       expect(prompt.prefix).to eq("Write antonyms for the following words.")
     end
+
+    it "loads a new zero shot prompt from file" do
+      prompt = Prompt.load_from_path(file_path: "spec/fixtures/prompt/zero_shot_prompt_template.json")
+      expect(prompt).to be_a(Prompt::ZeroShotPromptTemplate)
+      expect(prompt.template).to eq("Tell me a joke.")
+    end
   end
 end

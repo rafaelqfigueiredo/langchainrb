@@ -12,8 +12,6 @@ RSpec.describe Prompt::Base do
     after(:each) do
       FileUtils.rm_rf(File.dirname(file_path))
       FileUtils.rm_rf(File.dirname(invalid_file_path))
-      puts 'deleted'
-      puts File.dirname(invalid_file_path)
     end
 
     it "saves to a JSON file" do

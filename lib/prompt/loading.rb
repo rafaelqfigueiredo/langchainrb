@@ -6,7 +6,8 @@ require 'pathname'
 module Prompt
   TYPE_TO_LOADER = {
     "prompt" => ->(config) { Prompt.load_prompt(config) },
-    "few_shot" => ->(config) { Prompt.load_few_shot_prompt(config) }
+    "few_shot" => ->(config) { Prompt.load_few_shot_prompt(config) },
+    "zero_shot" => ->(config) { Prompt.load_zero_shot_prompt(config) }
   }
 
   class << self
@@ -54,6 +55,17 @@ module Prompt
       prefix, suffix, example_prompt, examples, input_variables = config.values_at("prefix", "suffix", "example_prompt", "examples", "input_variables")
       example_prompt = load_prompt(example_prompt)
       FewShotPromptTemplate.new(prefix: prefix, suffix: suffix, example_prompt: example_prompt, examples: examples, input_variables: input_variables)
+    end
+
+    #
+    # Loads a prompt template with the given configuration.
+    #
+    # @param config [Hash] A hash containing the configuration for the prompt.
+    #
+    # @return [ZeroShotPromptTemplate] The loaded prompt loaded.
+    #
+    def load_zero_shot_prompt(config)
+      ZeroShotPromptTemplate.new(template: config["template"])
     end
 
     private

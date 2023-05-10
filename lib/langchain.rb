@@ -22,4 +22,5 @@ module Prompt
   autoload :Base, "prompt/base"
   autoload :PromptTemplate, "prompt/prompt_template"
   autoload :FewShotPromptTemplate, "prompt/few_shot_prompt_template"
+  autoload :ZeroShotPromptTemplate, "prompt/zero_shot_prompt_template"
 end
